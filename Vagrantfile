@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "laravel/homestead"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -29,7 +29,6 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine and only allow access
   # via 127.0.0.1 to disable public access
   # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
-  config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -45,9 +44,6 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder "php-example", "/var/www/html/php-example"
-  config.vm.synced_folder "php-info", "/var/www/html/php-info"
-  config.vm.synced_folder "class_projects", "/var/www/html/class_projects"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -65,33 +61,10 @@ Vagrant.configure("2") do |config|
   # information on available options.
 
   # Enable provisioning with a shell script. Additional provisioners such as
-  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
   # config.vm.provision "shell", inline: <<-SHELL
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  #
-  # need libapache2-mod-php5.6 for php to work with Apache
-  config.vm.provision "shell", inline: <<-SHELL
-    echo "Adding PHP5.6 repository"
-    sleep 1
-    add-apt-repository ppa:ondrej/php
-    echo "Updating server"
-    sleep 2
-    apt update
-    apt upgrade -y
-    echo "Installing LAMP stack pacakges (Apache2, MySQL, PHP)"
-    apt install -y apache2 mysql-server php5.6 libapache2-mod-php5.6 php5.6-fpm php5.6-mysql
-    echo "Starting Apache2"
-    systemctl enable apache2
-    systemctl start apache2
-    echo "Enabling PHP5.6 FPM"
-    a2enmod proxy_fcgi setenvif
-    a2enconf php5.6-fpm
-    echo "Starting MySQL"
-    sleep 2
-    systemctl enable mysql
-    systemctl start mysql
-  SHELL
 end
