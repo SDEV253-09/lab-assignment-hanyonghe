@@ -1,4 +1,4 @@
 <?php
-String = DateTime.now();
-echo String."hello";
+
+echo String."hello 04 10 2020";
  ?>
