@@ -1,4 +1,11 @@
 <?php
+function func1(){
+  echo "string1";
+}
 
-echo String."hello 04 10 2020";
+function funC1(){
+  echo "string2";
+}
+FUNC1();
+
  ?>
