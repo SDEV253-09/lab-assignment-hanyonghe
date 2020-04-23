@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Book-o-rama</title>
+  </head>
+  <body>
+    <h1>Book-O-Rama Catalog Search</h1>
+    <form class="" action="results_pdo.php" method="post">
+      <p><strong>Choose Search Type</strong> <br>
+      <select class="" name="searchtype">
+        <option value="Author">Author</option>
+        <option value="Title">Title</option>
+        <option value="ISBN">ISBN</option>
+
+      </select>
+
+      </p>
+      <p><strong>Enter Search Term:</strong>
+        <input type="text" name="searchterm" size="40">
+      </p>
+      <p><input type="submit" name="submit" value="Search"></p>
+
+    </form>
+  </body>
+</html>
